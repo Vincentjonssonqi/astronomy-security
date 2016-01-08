@@ -149,6 +149,14 @@ Okay so that was the tool that will make it really easy to get up and running wi
 ### AstroClass.autorizeRequest(userId,requestType,acl)
 To evaluate if a user can perform a request you use this function
 ```javascript
-  //inside a meteor method or a publication
-  if (!Class.autorizeRequest(this.userId,'remove',acl)) throw new Meteor.Error('404', 'Not authorized to remove the object');
+  //inside a meteor update method (acl is optional)
+  if (!Class.autorizeRequest(this.userId,'update',acl)) throw new Meteor.Error('404', 'Not authorized to remove the object');
+```
+
+### AstroClass.buildQuery(queryArray,userId)
+To build a find query that filter out documents that the user does not have access to use this function
+```javascript
+  //inside a meteor find publication (acl is optional)
+  var query = Class.buildQuery(null,this.userId);
+  return Class.find(query,{fields:{ACL:0}});
 ```
