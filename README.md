@@ -82,10 +82,10 @@ AstroClass.setUserAccess(/*userId*/,{insert:true,remove:false,update:false,find:
 AstroClass.setPublicWriteAccess(false);
 AstroClass.setPublicReadAccess(false);
 ```
-That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only showed you the generic example to show you what is happening behind the scenes.
+That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only covered the generic and long example above to show you what is really happening when you call the helper functions.
 
 
 #### Access Control List (ACL)
 This could be translated into Document level permissions. Why not call it that then? Well That would just confuse all of the people out there that know this expression and what it means. Besides DLP is not as sexy. 
 
-Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is just like the CLP Class, It is a list of security controls in this case called OLC, which is short for Object level control.
+Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is similar to the CLP Class, It is a list of security controls but for every document. An ACL control is called an OLC, which is short for Object level control. To activate ACL security on a collection you set implementsACL to true in the security configuration. Now every document you create will have its own ACL object.
