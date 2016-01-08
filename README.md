@@ -42,7 +42,9 @@ var Comment = Astro.Class({
 By default the security configuration will not allow anything by anyone. This can be changed later or by passing your own values into the security object.
 
 #### Class Level Permissions (CLP)
-You can think of a CLP as a list of CLCs, short for Class Level Controls. Both CLP and CLC are Astro classes. The schema for them can be found here: https://github.com/Vincentjonssonqi/meteor-astronomy-security/blob/master/lib/module/collections.js
+You can think of a CLP as a list of CLCs, short for Class Level Controls. A CLC holds information about insert, update, remove and find permissions. It also contains information regarding who it concerns. This means that you could have different read and write permissions for different users.
+
+Both CLP and CLC are Astro classes. The schema for them can be found here: https://github.com/Vincentjonssonqi/meteor-astronomy-security/blob/master/lib/module/collections.js
 
 To create a CLP you create an array of CLCs and add them to the constrols property of the CLP on init.
 ```javascript
@@ -68,7 +70,7 @@ It looks kinda difficult and tedious. And I admit it kinda is, but it is very ge
 AstroClass.setRoleWriteAccess('admin',true);
 AstroClass.setRoleReadAccess('admin',false);
 //or get creative
-AstroClass.setUserAccess('admin',{insert:true,remove:false,update:false,find:true});
+AstroClass.setRoleAccess('admin',{insert:true,remove:false,update:false,find:true});
 //referencing roles is done by name and not by roleId as this will maintain the oneliner format :P
 ```
 and
@@ -82,12 +84,17 @@ AstroClass.setUserAccess(/*userId*/,{insert:true,remove:false,update:false,find:
 AstroClass.setPublicWriteAccess(false);
 AstroClass.setPublicReadAccess(false);
 ```
-That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only covered the generic and long example above to show you what is really happening when you call the helper functions.
+That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that you do not need to directly interface with the CLP or CLC class, thus making your code more readable and sexier. I only covered the generic and long example above to show you what really happens when you call the helper functions.
 
 
 #### Access Control List (ACL)
-This could be translated into Document level permissions. Why not call it that then? Well That would just confuse all of the people out there that know this expression and what it means. Besides DLP is not as sexy. 
+This could be translated into Document level permissions. Why not call it that then? Well That would just confuse all of the people out there that know the ACL expression and what it stands for. Besides DLP is not as sexy as ACL. 
 
-Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is similar to the CLP Class, It is a list of security controls but for a single document. To activate ACL security on a collection you set implementsACL to true in the security configuration. Now every document you create will have its own ACL object. 
+Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is similar in format to the CLP Class, the difference being that an ACL is a list of security controls for a single document instead of the entire class. To activate ACL security on a collection you set implementsACL to true in the security configuration. Now every document you create will have its own ACL object. 
 
-An ACL security control is called an OLC, which is short for Object level control. This filles the same function as a CLC does for the CLP. The only difference is that you can only specify read and write access (not remove or insert for example). This is a consious choice as the usecase for any complex control configuration on the document level is minimal. 
+An ACL security control is called an OLC, which is short for Object level control. This filles the same function as a CLC does for the CLP. As every document has an extra ACL object it is important to keep the size of the overhead down as much as possible. So the only difference between a CLC and an OLC is that you can only specify read and write permissions (not remove or insert for example). This is a consious choice as I found that the usecases for any complex control configuration on the document level is minimal.  
+
+Configuring the ACL object on an instance of a AstroClass is just as simple as how you would configure the CLP for the entire Astro class.
+```javascript
+
+```
