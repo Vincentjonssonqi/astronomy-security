@@ -67,6 +67,8 @@ It looks kinda difficult and tedious. And I admit it kinda is, but it is very ge
 ```javascript 
 AstroClass.setRoleWriteAccess('admin',true);
 AstroClass.setRoleReadAccess('admin',false);
+//get creative
+AstroClass.setUserAccess('admin',{insert:true,remove:false,update:false,find:true});
 ```
 and
 ```javascript 
@@ -76,7 +78,7 @@ AstroClass.setUserReadAccess(/*userId*/,true);
 //get creative
 AstroClass.setUserAccess(/*userId*/,{insert:true,remove:false,update:false,find:true});
 //set public access rights
-AstroClass.setPublicWriteAccess(/*userId*/,false);
-AstroClass.setPublicReadAccess(/*userId*/,false);
+AstroClass.setPublicWriteAccess(false);
+AstroClass.setPublicReadAccess(false);
 ```
-That would be swell right? In fact this is how you should write your class level permissions. The framework adds helper functions so that your code looks more understandable. I only showed you the generic example as this is what is happening behind the scenes.
+That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only showed you the generic example as this is what is happening behind the scenes.
