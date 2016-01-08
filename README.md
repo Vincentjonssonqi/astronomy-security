@@ -42,4 +42,50 @@ var Comment = Astro.Class({
 By default the security configuration will not allow anything by anyone. This can be changed later or by passing your own values into the security object.
 
 #### Class Level Permissions (CLP)
-You can think of a CLP as a list of CLCs, short for Class Level Control. Both CLP and CLC are Astro classes.
+You can think of a CLP as a list of CLCs, short for Class Level Controls. Both CLP and CLC are Astro classes. The schema for them looks like this:
+```javascript
+var CLC = Astro.Class({
+ name:'CLC',
+ fields:{
+   type:{
+     type:'object',
+     default:function(){
+       return {
+         name:'public'
+       };
+     }
+   },
+   find:{
+     type:'boolean',
+     default:false
+   },
+   update:{
+     type:'boolean',
+     default:false
+   },
+   insert:{
+     type:'boolean',
+     default:false
+   },
+   remove:{
+     type:'boolean',
+     default:false
+   }
+ }
+});
+
+var CLP = Astro.Class({
+  name: 'CLP',
+  fields: {
+    controls: {
+      type: 'array',
+      default: function() {
+        return [new CLC()];
+      },
+      nested: 'CLC'
+    }
+  }
+});
+
+```
+
