@@ -88,4 +88,6 @@ That would be swell right? In fact this is how you write your class level permis
 #### Access Control List (ACL)
 This could be translated into Document level permissions. Why not call it that then? Well That would just confuse all of the people out there that know this expression and what it means. Besides DLP is not as sexy. 
 
-Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is similar to the CLP Class, It is a list of security controls but for every document. An ACL control is called an OLC, which is short for Object level control. To activate ACL security on a collection you set implementsACL to true in the security configuration. Now every document you create will have its own ACL object.
+Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is similar to the CLP Class, It is a list of security controls but for a single document. To activate ACL security on a collection you set implementsACL to true in the security configuration. Now every document you create will have its own ACL object. 
+
+An ACL security control is called an OLC, which is short for Object level control. This filles the same function as a CLC does for the CLP. The only difference is that you can only specify read and write access (not remove or insert for example). This is a consious choice as the usecase for any complex control configuration on the document level is minimal. 
