@@ -153,7 +153,7 @@ To evaluate if a user can perform a request you use this function
   if (!Class.autorizeRequest(this.userId,'update',acl)) throw new Meteor.Error('404', 'Not authorized to remove the object');
 ```
 
-### AstroClass.buildQuery(queryArray,userId)
+### AstroClass.buildQuery(query,userId)
 To build a find query that filter out documents that the user does not have access to use this function
 ```javascript
   //inside a meteor find publication (acl is optional)
