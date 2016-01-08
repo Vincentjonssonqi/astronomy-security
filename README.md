@@ -10,5 +10,4 @@ definitions. What astronomy doesn't solve yet is who gets to modify the collecti
 Sure it does not have to solve this problem as there are numorous patterns and packages that help you with this already.
 So why build another one you might ask? What is so unique about this package?
 Well a number of things. As you might know if you are using Astronomy the framework is a breaze to work with. It is not a simple 
-task it tries to solve but using the framework is very intuitive and effortless. As you might know if you are a meteor developer with a few
-apps on your belt, security in meteor is not always very effortless to implement. Allow and deny rules can get really complex very quickly
+task it tries to solve but using the framework is very intuitive and effortless. As you might know if you are a meteor developer with a few apps on your belt, security in meteor is not always very effortless to implement. Allow and deny rules can get really complex very quickly and also can't secure single documents in a collection. Alternative two is securing your app using methods and publications. In my opinion this is the way to go. The only problem with this approach is that this will take a much longer time to implement.
