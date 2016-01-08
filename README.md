@@ -67,8 +67,9 @@ It looks kinda difficult and tedious. And I admit it kinda is, but it is very ge
 ```javascript 
 AstroClass.setRoleWriteAccess('admin',true);
 AstroClass.setRoleReadAccess('admin',false);
-//get creative
+//or get creative
 AstroClass.setUserAccess('admin',{insert:true,remove:false,update:false,find:true});
+//referencing roles is done by name and not by roleId as this will maintain the oneliner format :P
 ```
 and
 ```javascript 
@@ -81,4 +82,10 @@ AstroClass.setUserAccess(/*userId*/,{insert:true,remove:false,update:false,find:
 AstroClass.setPublicWriteAccess(false);
 AstroClass.setPublicReadAccess(false);
 ```
-That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only showed you the generic example as this is what is happening behind the scenes.
+That would be swell right? In fact this is how you write your class level permissions in astronomy-security. The framework adds these helper functions so that your code becomes more readable and sexier. I only showed you the generic example to show you what is happening behind the scenes.
+
+
+#### Access Control List (ACL)
+This could be translated into Document level permissions. Why not call it that then? Well That would just confuse all of the people out there that know this expression and what it means. Besides DLP is not as sexy. 
+
+Now that we got that out of the way lets quickly introduce what document level permissions or ACLs are. An ACL in astronomy-security is just like the CLP Class, It is a list of security controls in this case called OLC, which is short for Object level control.
