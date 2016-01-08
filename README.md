@@ -42,50 +42,28 @@ var Comment = Astro.Class({
 By default the security configuration will not allow anything by anyone. This can be changed later or by passing your own values into the security object.
 
 #### Class Level Permissions (CLP)
-You can think of a CLP as a list of CLCs, short for Class Level Controls. Both CLP and CLC are Astro classes. The schema for them looks like this:
+You can think of a CLP as a list of CLCs, short for Class Level Controls. Both CLP and CLC are Astro classes. The schema for them can be found here: https://github.com/Vincentjonssonqi/meteor-astronomy-security/blob/master/lib/module/collections.js
+
+To create a CLP you create an array of CLCs and add them to the constrols property of the CLP on init.
 ```javascript
-var CLC = Astro.Class({
- name:'CLC',
- fields:{
-   type:{
-     type:'object',
-     default:function(){
-       return {
-         name:'public'
-       };
-     }
-   },
-   find:{
-     type:'boolean',
-     default:false
-   },
-   update:{
-     type:'boolean',
-     default:false
-   },
-   insert:{
-     type:'boolean',
-     default:false
-   },
-   remove:{
-     type:'boolean',
-     default:false
-   }
- }
-});
+var clcs = [];
+var roleCLC = new CLC({
+                  type:{
+                    name:'role',  //This can be either public, role, or user
+                    id:'roleId'   //This is only required if name is role or user
+                  },
+                  insert:true,    // default false
+                  update:true,       // default false
+                  remove:true
+                //find:will be false
+                });
+  clcs.push(roleCLC); 
+  
+var clp = new CLP({controls:clcs});
 
-var CLP = Astro.Class({
-  name: 'CLP',
-  fields: {
-    controls: {
-      type: 'array',
-      default: function() {
-        return [new CLC()];
-      },
-      nested: 'CLC'
-    }
-  }
-});
-
+//add to security configuration at init
 ```
-
+It looks kinda difficult and tedious. And I admit it kinda is, but it is very generic. The CLC class can take the form of any security category control and the clp houses them all. What makes this code really bad is the number of classes you have to use in order to encomplish your goal. wouldn't it be great if you could just write.
+```javascript 
+AstroClass.setRoleWriteAccess('admin',true);
+```
