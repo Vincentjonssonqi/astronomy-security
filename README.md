@@ -150,7 +150,7 @@ Okay so that was the tool that will make it really easy to get up and running wi
 To evaluate if a user can perform a request you use this function
 ```javascript
   //inside a meteor update method (acl is optional)
-  if (!Class.autorizeRequest(this.userId,'update',acl)) throw new Meteor.Error('404', 'Not authorized to remove the object');
+  if (!Class.autorizeRequest(this.userId,'update',acl)) throw new Meteor.Error('403', 'Not authorized to remove the object');
 ```
 
 ### AstroClass.buildQuery(query,userId)
