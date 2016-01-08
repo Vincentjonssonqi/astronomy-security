@@ -20,7 +20,7 @@ This package supports securing a collection on a class and document level. You h
 In this part o the readme I will explain how everything works.
 
 #### Security Configuration
-Ones you've added the astronomy-security to your meteor app every Astro class except classes without collections will implement a security configuration property. If you want to override the default values in it at initlisation of the astro class you can by providing a security object. This object has three properties that you can set, implementsACL, defaultACL and CLP. You do not need to define these at all if you don't want to as astronomy-security will add this object itself on init. By default the security configuration will not allow anything by anyone.
+Ones you've added the astronomy-security to your meteor app every Astro class except classes without collections will implement a security configuration property. If you want to override the default values in it at initlisation of the astro class you can by providing a security object. This object has three properties that you can set, implementsACL, defaultACL and CLP. You do not need to define these at all if you don't want to as astronomy-security will add this object itself on init. 
 
 ```javascript
 var Comments = new Mongo.Collection('comments');
@@ -39,6 +39,7 @@ var Comment = Astro.Class({
 
 });
 ```
+By default the security configuration will not allow anything by anyone. This can be changed later or by passing your own values into the security object.
 
 #### Class Level Permissions (CLP)
-
+You can think of a CLP as a list of CLCs, short for Class Level Control. Both CLP and CLC are Astro classes.
