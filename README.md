@@ -66,4 +66,17 @@ var clp = new CLP({controls:clcs});
 It looks kinda difficult and tedious. And I admit it kinda is, but it is very generic. The CLC class can take the form of any security category control and the clp houses them all. What makes this code really bad is the number of classes you have to use in order to encomplish your goal. wouldn't it be great if you could just write.
 ```javascript 
 AstroClass.setRoleWriteAccess('admin',true);
+AstroClass.setRoleReadAccess('admin',false);
 ```
+and
+```javascript 
+//set user specific class access
+AstroClass.setUserWriteAccess(/*userId*/,true);
+AstroClass.setUserReadAccess(/*userId*/,true);
+//get creative
+AstroClass.setUserAccess(/*userId*/,{insert:true,remove:false,update:false,find:true});
+//set public access rights
+AstroClass.setPublicWriteAccess(/*userId*/,false);
+AstroClass.setPublicReadAccess(/*userId*/,false);
+```
+That would be swell right? In fact this is how you should write your class level permissions. The framework adds helper functions so that your code looks more understandable. I only showed you the generic example as this is what is happening behind the scenes.
