@@ -146,11 +146,11 @@ So these functions will do as their title implies. But before the function inser
 
 Okay so that was the tool that will make it really easy to get up and running with your secure Astro class. You may however later on in the development phase whant to add more methods and publications that do more specific things. How do you secure these your own custom methods and publications? Well Astronomy security has your back here to. 
 
-### AstroClass.autorizeRequest(userId,requestType,acl)
+### AstroClass.autorizeRequest(requestType,userId,acl)
 To evaluate if a user can perform a request you use this function
 ```javascript
   //inside a meteor update method (acl is optional)
-  if (!Class.autorizeRequest(this.userId,'update',acl)) throw new Meteor.Error('403', 'Not authorized to remove the object');
+  if (!Class.autorizeRequest('update',this.userId,acl)) throw new Meteor.Error('403', 'Not authorized to remove the object');
 ```
 
 ### AstroClass.buildQuery(query,userId)
