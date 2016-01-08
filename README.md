@@ -133,4 +133,22 @@ If you just want secure insert, update and remove methods as well as a basic fin
 var Comment = Astro.Class(/*...*/);
     Comment.generateMethodsAndPublications();
 ```
-Yes that is it! this will create functions
+Yes that is it! By calling this function the following will happen:
+```javascript
+Meteor.methods({
+  insertComment:function(values){/*...*/},
+  updateComment:function(commentId,values){/*...*/},
+  removeComment:function(commentId){/*...*/}
+});
+Meteor.publish('Comment',function(){/*...*/})
+```
+So these functions will do as their title implies. But before the function inserts or updates anything they will make sure that the user who is requesting a the certain operation is authorized to do so. The insert and update methods will also validate the the input values against class schema. The simple find publication will malso make sure to filter out any documents that the user requesting the find should not be able to see.
+
+Okay so that was the tool that will make it really easy to get up and running with your secure Astro class. You may however later on in the development phase whant to add more methods and publications that do more specific things. How do you secure these your own custom methods and publications? Well Astronomy security has your back here to. 
+
+### AstroClass.autorizeRequest(userId,requestType,acl)
+To evaluate if a user can perform a request you use this function
+```javascript
+  //inside a meteor method or a publication
+  if (!Class.autorizeRequest(this.userId,'remove',acl)) throw new Meteor.Error('404', 'Not authorized to remove the object');
+```
