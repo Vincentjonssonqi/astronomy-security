@@ -94,7 +94,37 @@ Now that we got that out of the way lets quickly introduce what document level p
 
 An ACL security control is called an OLC, which is short for Object level control. This filles the same function as a CLC does for the CLP. As every document has an extra ACL object it is important to keep the size of the overhead down as much as possible. So the only difference between a CLC and an OLC is that you can only specify read and write permissions (not remove or insert for example). This is a consious choice as I found that the usecases for any complex control configuration on the document level is minimal.  
 
-Configuring the ACL object on an instance of a AstroClass is just as simple as how you would configure the CLP for the entire Astro class.
+Configuring the ACL object on an instance of an Astro class is just as simple as how you would configure the CLP for the entire Astro class.
 ```javascript
+var Comment = Astro.Class({
+  /*...*/
+  security:{
+    implementsACL:true
+  }
+});
+//This line of code will set the public read for the entire class to true (CLP config)
+Comment.setPublicReadAccess(true);
+
+//Initilize a comment 
+var comment = new Comment();
+//This line of code will set the public read on this specific comment document to false (ACL config)
+comment.setPublicReadAccess(false);
+//here are the rest of the functions you can use to config your acl
+comment.setPublicWriteAccess(true);
+comment.setPublicAccess({write:true,read:false}); //if you want to a one liner
+
+comment.setRoleReadAccess('admin',true);
+comment.setRoleWriteAccess('admin',true);
+comment.setRoleAccess('admin',{write:true,read:true}); //if you want a one liner
+
+comment.setUserReadAccess(/*userId*/,true);
+comment.setUserWriteAccess(/*userId*/,true);
+comment.setUserAccess(/*userId*/,{write:true,read:true}); //if you want a one liner
 
 ```
+As you can see this is a very intuitive way of setting document security. You have the same helper functions as you have for setting you class level permissions, the difference being these functions will change the ACL property on the document instead of the CLP for the entire class.
+
+#### Evaluating user access to methods and publications
+As is mentioned in the intro I believe that using methods and publications is the way to go when it comes to making your meteor app more secure. Up till this point I have only talked about how you would define your security permissions. Now it is time to show you how easy it is for you to build methods and publications that authorize every request against your security configurations.
+
+I really wanted this part to be as flexible as possible but at the same time providing you some tools to quickly get up and running. 
