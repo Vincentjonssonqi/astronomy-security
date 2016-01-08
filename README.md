@@ -127,4 +127,10 @@ As you can see this is a very intuitive way of setting document security. You ha
 #### Evaluating user access to methods and publications
 As is mentioned in the intro I believe that using methods and publications is the way to go when it comes to making your meteor app more secure. Up till this point I have only talked about how you would define your security permissions. Now it is time to show you how easy it is for you to build methods and publications that authorize every request against your security configurations.
 
-I really wanted this part to be as flexible as possible but at the same time providing you some tools to quickly get up and running. 
+I really wanted this part to be as flexible as possible but at the same time providing you with some tools to quickly get up and running. 
+If you just want secure insert, update and remove methods as well as a basic find publication for your collection you can use the s helper function called generateMethodsAndPublications.
+```javascript
+var Comment = Astro.Class(/*...*/);
+    Comment.generateMethodsAndPublications();
+```
+Yes that is it! this will create functions
