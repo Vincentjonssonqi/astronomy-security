@@ -30,7 +30,8 @@ Package.onUse(function(api) {
     'lib/module/init-roleMapping.js'
   ], ['server']);
 
-  api.export(['ACL', 'OLC','CLC','CLP','Role','Roles','RoleMapping','RoleMappings'], ['client','server']);
+  api.export(['ACL', 'OLC','CLC','CLP'], ['client','server']);
+  api.export(['Role','Roles','RoleMapping','RoleMappings'],['server'])
 });
 
 Package.onTest(function(api) {
