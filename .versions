@@ -29,7 +29,11 @@ jagi:astronomy-validators@1.0.3
 jagi:reactive-map@1.0.0
 jquery@1.11.4
 livedata@1.0.15
+<<<<<<< HEAD
 local-test:vincentjonssonqi:astronomy-security@0.0.3
+=======
+local-test:vincentjonssonqi:astronomy-security@0.0.1
+>>>>>>> dfddc587c1d259e9d1d19775d32de1ab3b4e1e7e
 localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.10
@@ -51,6 +55,10 @@ spacebars-compiler@1.0.7
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
+<<<<<<< HEAD
 vincentjonssonqi:astronomy-security@0.0.3
+=======
+vincentjonssonqi:astronomy-security@0.0.1
+>>>>>>> dfddc587c1d259e9d1d19775d32de1ab3b4e1e7e
 webapp@1.2.3
 webapp-hashing@1.0.5
