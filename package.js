@@ -1,8 +1,8 @@
 Package.describe({
   name: 'vincentjonssonqi:astronomy-security',
-  version: '0.0.1',
+  version: '0.0.3',
   // Brief, one-line summary of the package.
-  summary: 'Add Class level security and object level security for your Meteor project. You can also generate find publication, insert,update and remove methods that all conform to the security configurations.',
+  summary: 'Add Class and object level security for your Meteor project.',
   // URL to the Git repository containing the source code for this package.
   git: 'https://github.com/Vincentjonssonqi/astronomy-security.git',
   // By default, Meteor will default to using README.md for documentation.
